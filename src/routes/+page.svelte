@@ -66,7 +66,7 @@
   let testYActual = $state<number>(1);
   let showActual = $state<boolean>(false);
   let perPoint = $state<boolean>(false);
-  let testY = $derived(model().fit(testX));
+  let testY = $derived(Math.round(model().fit(testX) * 1000) / 1000);
 </script>
 
 <div class="flex w-full h-screen">
