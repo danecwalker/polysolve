@@ -249,10 +249,20 @@
             <div class="flex text-lg">
               <span class="text-gray-500">y</span>
               <span class="mx-1">=</span>
-              <span class="font-medium">{v.slope}</span>
-              <span class="text-gray-500 ml-0.5">x</span>
-              <span class="mx-1">+</span>
-              <span class="font-medium">{v.intercept}</span>
+              {#if v.slope !== 0}
+                {#if v.slope !== 1}
+                  <span class="font-medium">{v.slope}</span>
+                {/if}
+                <span class="text-gray-500 ml-0.5">x</span>
+              {:else}
+                <span class="font-medium">0</span>
+              {/if}
+              {#if v.intercept !== 0}
+                <span class="mx-1">
+                  {v.intercept > 0 ? "+" : "-"}
+                </span>
+                <span class="font-medium">{Math.abs(v.intercept)}</span>
+              {/if}
               <span class="ml-4">for</span>
               <span class="text-gray-500 ml-2">x</span>
               <span class="ml-1">&isinv;</span>
