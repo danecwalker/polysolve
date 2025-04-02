@@ -81,7 +81,7 @@
         viewBox="0 0 {width} {height}"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <g>
+        <g fill="none" stroke="none">
           {#each points as point}
             <circle
               cx={xScale(point.x)}
@@ -105,7 +105,7 @@
           />
         </g>
 
-        <g>
+        <g fill="none" stroke="none">
           <circle
             cx={xScale(testX)}
             cy={yScale(testY)}
