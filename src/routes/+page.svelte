@@ -109,7 +109,7 @@
           <circle
             cx={xScale(testX)}
             cy={yScale(testY)}
-            r="4"
+            r="6"
             class="fill-blue-500"
           />
 
@@ -117,7 +117,7 @@
             <circle
               cx={xScale(testX)}
               cy={yScale(testYActual)}
-              r="4"
+              r="6"
               class="fill-green-500"
             />
           {/if}
