@@ -194,7 +194,7 @@
               <tr>
                 <td class="p-2">
                   <input
-                    class="w-full text-center p-2 border border-blue-300 rounded"
+                    class="w-full text-center p-2 border border-gray-300 rounded"
                     type="text"
                     oninput={(e) => {
                       point.x = parseFloat(
