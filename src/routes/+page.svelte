@@ -281,6 +281,7 @@
               class="w-full text-center p-2 border border-gray-300 rounded"
               type="text"
               id="test-x"
+              step="0.001"
               oninput={(e) => {
                 testX = parseFloat((e.target as HTMLInputElement).value || "0");
               }}
@@ -292,6 +293,7 @@
               id="test-x-s"
               min={xScale.domain()[0]}
               max={xScale.domain()[1]}
+              step="0.001"
               bind:value={testX}
             />
           </div>
