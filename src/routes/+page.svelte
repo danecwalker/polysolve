@@ -65,6 +65,7 @@
   let testX = $state<number>(1);
   let testYActual = $state<number>(1);
   let showActual = $state<boolean>(false);
+  let perPoint = $state<boolean>(false);
   let testY = $derived(model().fit(testX));
 </script>
 
@@ -226,6 +227,10 @@
       class="flex flex-col gap-4 border border-gray-300 p-4 rounded bg-white"
     >
       <h2 class="text-2xl font-medium">Result</h2>
+      <div class="flex gap-2 items-center">
+        <label for="test-y" class="text-lg">Per Point</label>
+        <input type="checkbox" bind:checked={perPoint} />
+      </div>
       <div
         class="border border-gray-300 rounded overflow-hidden flex flex-col p-2"
       >
@@ -244,8 +249,8 @@
         {:else}
           <p>No polynomial found</p>
         {/if} -->
-        {#if model().describe().length > 0}
-          {#each model().describe() as v}
+        {#if model().describe(!perPoint).length > 0}
+          {#each model().describe(!perPoint) as v}
             <div class="flex text-lg">
               <span class="text-gray-500">y</span>
               <span class="mx-1">=</span>

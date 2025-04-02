@@ -9,10 +9,12 @@ type Description = {
 
 type PiecewiseLinearModel = {
   fit: (x: number) => number;
-  describe: () => Description[];
+  describe: (flat: boolean) => Description[];
 };
 
-export function createPiecewiseLinearModel(points: Point[]): PiecewiseLinearModel {
+export function createPiecewiseLinearModel(
+  points: Point[],
+): PiecewiseLinearModel {
   const sorted = [...points].sort((a, b) => a.x - b.x);
 
   const fit = (x: number): number => {
@@ -41,7 +43,7 @@ export function createPiecewiseLinearModel(points: Point[]): PiecewiseLinearMode
     return sorted[sorted.length - 1].y;
   };
 
-  const describe = (): Description[] => {
+  const describe = (flat: boolean = true): Description[] => {
     const segments: Description[] = [];
     for (let i = 0; i < sorted.length - 1; i++) {
       const p1 = sorted[i];
@@ -67,7 +69,23 @@ export function createPiecewiseLinearModel(points: Point[]): PiecewiseLinearMode
         });
       }
     }
-    return segments;
+
+    return flat
+      ? segments.reduce((acc, curr) => {
+          if (acc.length === 0) {
+            return [curr];
+          }
+
+          const prev = acc[acc.length - 1];
+          if (prev.slope === curr.slope && prev.intercept === curr.intercept) {
+            prev.end = curr.end;
+          } else {
+            acc.push(curr);
+          }
+
+          return acc;
+        }, [] as Description[])
+      : segments;
   };
 
   return { fit, describe };
