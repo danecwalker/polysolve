@@ -3,7 +3,7 @@
   import { curveLinear, extent, line, range, scaleLinear } from "d3";
 
   let nPoints = $state(5);
-  let points = $state<Point[]>(Array.from({ length: nPoints }, (_, i) => ({
+  let points = $state<Point[]>(Array.from({ length: 5 }, (_, i) => ({
     x: i+1,
     y: i+1,
   })));
